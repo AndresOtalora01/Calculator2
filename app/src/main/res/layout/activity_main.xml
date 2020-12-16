@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:padding="30dp"
     tools:context=".MainActivity">
 
@@ -16,43 +17,42 @@
         android:text=""
         android:textSize="50sp" />
 
-<LinearLayout
-    android:id="@+id/stack"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/tvScore">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPila"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvScore"
+        android:layout_above="@+id/btnLayout"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
 
     <LinearLayout
         android:id="@+id/btnLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/stack"
-        android:layout_marginTop="20dp"
+        android:layout_above="@+id/editTextInput"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnMinus"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="75dp"
+            android:layout_weight="1"
+            android:onClick="minusMethod"
             android:text="-"
-            android:textSize="25sp"
-            android:onClick="minusMethod"/>
+            android:layout_margin="4dp"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/btnPlus"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
+            android:onClick="plusMethod"
+            android:layout_margin="4dp"
             android:text="+"
-            android:textSize="25sp"
-            android:onClick="plusMethod"/>
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -60,11 +60,13 @@
         android:id="@+id/editTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnLayout"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="250dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:inputType="phone"/>
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:hint="@string/input"
+        android:inputType="numberSigned"
+        android:layout_alignParentBottom="true"/>
 
 
 </RelativeLayout>

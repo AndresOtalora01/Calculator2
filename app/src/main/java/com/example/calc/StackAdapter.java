@@ -1,6 +1,6 @@
 package com.example.calc;
 
-import android.content.Context;
+import  android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +13,18 @@ import java.util.ArrayList;
 
 public class StackAdapter extends RecyclerView.Adapter<StackAdapter.MyViewHolder> {
 
-    private ArrayList<HistoricModel> historico;
+    private ArrayList<HistoricModel> historico = new ArrayList<>();;
     private Context context;
 
 
-    public StackAdapter(Context context, ArrayList<HistoricModel> historico) {
-        this.historico = historico;
+    public StackAdapter(Context context) {
         this.context = context;
+    }
+
+    public void updateList(ArrayList<HistoricModel> array){
+        historico.clear();
+        historico.addAll(array);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -32,15 +37,13 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(StackAdapter.MyViewHolder holder, int position) {
         HistoricModel fieldHistorico = historico.get(position);
-        holder.input.setText(String.valueOf(fieldHistorico.getInput()));
+        holder.input.setText((fieldHistorico.getInput()>0 ? "+" : "")+fieldHistorico.getInput());
         holder.result.setText(String.valueOf(fieldHistorico.getResult()));
     }
 
     @Override
     public int getItemCount() {
-        if (historico != null) {
-            return historico.size();
-        } else return 0;
+        return historico.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
