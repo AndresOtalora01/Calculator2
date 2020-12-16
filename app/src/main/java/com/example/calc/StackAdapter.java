@@ -24,7 +24,7 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.MyViewHolder
 
     @Override
     public StackAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        TextView v = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.stack_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.stack_row, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -32,8 +32,8 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(StackAdapter.MyViewHolder holder, int position) {
         HistoricModel fieldHistorico = historico.get(position);
-        holder.input.setText(fieldHistorico.getInput());
-        holder.result.setText(fieldHistorico.getResult());
+        holder.input.setText(String.valueOf(fieldHistorico.getInput()));
+        holder.result.setText(String.valueOf(fieldHistorico.getResult()));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StackAdapter extends RecyclerView.Adapter<StackAdapter.MyViewHolder
         // each data item is just a string in this case
         public TextView input, result;
 
-        public MyViewHolder(TextView v) {
+        public MyViewHolder(View v) {
             super(v);
             input = v.findViewById(R.id.tvInput);
             result = v.findViewById(R.id.tvResultado);

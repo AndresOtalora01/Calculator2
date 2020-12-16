@@ -13,23 +13,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="53"
+        android:text=""
         android:textSize="50sp" />
 
-
+<LinearLayout
+    android:id="@+id/stack"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/tvScore">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPila"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvScore"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp" />
-
+</LinearLayout>
 
     <LinearLayout
         android:id="@+id/btnLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvPila"
+        android:layout_below="@+id/stack"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
@@ -61,7 +64,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="250dp"
         android:layout_marginTop="20dp"
-        android:text="Input" />
+        android:inputType="phone"/>
 
 
 </RelativeLayout>
