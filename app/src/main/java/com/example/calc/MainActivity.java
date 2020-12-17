@@ -19,7 +19,8 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private ArrayList<HistoricModel> historic = new ArrayList<>();;
+    private ArrayList<HistoricModel> historic = new ArrayList<>();
+    ;
     private EditText etInput;
     private TextView etScore;
     private int actualScore = 0;
@@ -36,40 +37,80 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private StackAdapter listAdapter;
-    public void initList() {
 
-         listAdapter = new StackAdapter(this);
+    private void initList() {
+
+        listAdapter = new StackAdapter(this);
         recyclerView.setAdapter(listAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
     }
 
     public void plusMethod(View view) {
-        updateScore(true);
+        updateScore(1);
     }
 
     public void minusMethod(View view) {
-        updateScore(false);
+        updateScore(2);
     }
 
-    private void updateScore(Boolean isPositive) {
+    public void multMethod(View view) {
+        updateScore(3);
+    }
+
+    public void divMethod(View view) {
+        updateScore(4);
+    }
+
+//    private void updateScor(Boolean isPositive) {
+//        String valueInput = etInput.getText().toString();
+//
+//        if (TextUtils.isEmpty(valueInput)) return;
+//
+//        int input = Integer.parseInt(valueInput);
+//
+//        if (!isPositive) {
+//            input = -input;
+//        }
+//
+//        actualScore += input;
+//
+//        etScore.setText(String.valueOf(actualScore));
+//
+//        historic.add(0, new HistoricModel(input, actualScore));
+//        listAdapter.updateList(historic);
+//    }
+
+    private void updateScore(int i) {
         String valueInput = etInput.getText().toString();
 
         if (TextUtils.isEmpty(valueInput)) return;
 
         int input = Integer.parseInt(valueInput);
 
-        if (!isPositive) {
-            input = -input;
+        switch (i) {
+            case 1:
+                actualScore += input;
+                break;
+            case 2:
+                input = -input;
+                actualScore += input;
+                break;
+            case 3:
+                actualScore *= input;
+                break;
+            case 4:
+                if (input != 0) {
+                    actualScore /= input;
+                } else return;
+                break;
+
         }
-
-        actualScore += input;
-
         etScore.setText(String.valueOf(actualScore));
-
         historic.add(0, new HistoricModel(input, actualScore));
         listAdapter.updateList(historic);
     }
+
+
 }
