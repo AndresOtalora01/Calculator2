@@ -44,23 +44,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(listAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
     public void plusMethod(View view) {
-        updateScore(1);
+        updateScore(HistoricModel.OperandType.TYPE_SUM);
     }
 
     public void minusMethod(View view) {
-        updateScore(2);
+        updateScore(HistoricModel.OperandType.TYPE_SUB);
     }
 
     public void multMethod(View view) {
-        updateScore(3);
+        updateScore(HistoricModel.OperandType.TYPE_MUL);
     }
 
     public void divMethod(View view) {
-        updateScore(4);
+        updateScore(HistoricModel.OperandType.TYPE_DIV);
     }
 
 //    private void updateScor(Boolean isPositive) {
@@ -82,33 +81,32 @@ public class MainActivity extends AppCompatActivity {
 //        listAdapter.updateList(historic);
 //    }
 
-    private void updateScore(int i) {
+    private void updateScore(HistoricModel.OperandType operandType) {
         String valueInput = etInput.getText().toString();
 
         if (TextUtils.isEmpty(valueInput)) return;
 
         int input = Integer.parseInt(valueInput);
 
-        switch (i) {
-            case 1:
+        switch (operandType) {
+            case TYPE_SUM:
                 actualScore += input;
                 break;
-            case 2:
-                input = -input;
-                actualScore += input;
+            case TYPE_SUB:
+                actualScore -= input;
                 break;
-            case 3:
+            case TYPE_MUL:
                 actualScore *= input;
                 break;
-            case 4:
+            case TYPE_DIV:
                 if (input != 0) {
-                    actualScore /= input;
+                 actualScore /= input;
                 } else return;
                 break;
 
         }
         etScore.setText(String.valueOf(actualScore));
-        historic.add(0, new HistoricModel(input, actualScore));
+        historic.add(0, new HistoricModel(input, actualScore, operandType));
         listAdapter.updateList(historic);
     }
 
